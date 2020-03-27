@@ -25,6 +25,9 @@ def get_instructions(player_1, player_2):
 
     list_instruction_player_1 = instructions_player_1.split()
     list_instruction_player_2 = instructions_player_2.split()
+    
+                                
+   
 
     return list_instruction_player_1, list_instruction_player_2
 
@@ -50,6 +53,9 @@ Version
 specification: Caroline Heijmans(v.1 19 / 02 / 2020)
  
 """
+# initialize list to check move and fight conditions later
+list_fight_instructions = []                                
+                                
 for instruction in list_instruction_player_1:
 
     if ':' and not 'upgrade' in instruction:
@@ -98,6 +104,7 @@ for instruction in list_instruction_player_1:
         # fight unit
 
         fighting_instruction = instruction.split('*','-','=')
+        list_fight_instructions += fighting_instruction                       
 
         name_fighting_unit = fighting_instruction[0]
         range_fight = fighting_instruction[1]
@@ -112,6 +119,7 @@ for instruction in list_instruction_player_2:
         # fight unit
 
         fighting_instruction = instruction.split('*','-','=')
+        list_fight_instructions += fighting_instruction                        
 
         name_fighting_unit = fighting_instruction[0]
         range_fight = fighting_instruction[1]
@@ -126,12 +134,16 @@ for instruction in list_instruction_player_1:
         # move_unit  
 
         moving_instruction = instruction_split('@','-')
+        
+        #check unit did not attack                        
+        for fight_instruction in list_fight_instructions :
+            if moving_instruction[0] != fight_instruction[0] :
+                                
+                name_moving_unit = moving_instruction[0]
+                range_move = moving_instruction[1]
+                column_move = moving_instruction[2]
 
-        name_moving_unit = moving_instruction[0]
-        range_move = moving_instruction[1]
-        column_move = moving_instruction[2]
-
-        move_unit(name_moving_unit, range_move, column_move)
+                move_unit(name_moving_unit, range_move, column_move)                    
 
 for instruction in list_instruction_player_2:
 
@@ -139,12 +151,16 @@ for instruction in list_instruction_player_2:
         # move_unit  
 
         moving_instruction = instruction_split('@','-')
+                                
+        #check unit did not attack                        
+        for fight_instruction in list_fight_instructions :
+            if moving_instruction[0] != fight_instruction[0] :
+                                
+                name_moving_unit = moving_instruction[0]
+                range_move = moving_instruction[1]
+                column_move = moving_instruction[2]
 
-        name_moving_unit = moving_instruction[0]
-        range_move = moving_instruction[1]
-        column_move = moving_instruction[2]
-
-        move_unit(name_moving_unit, range_move, column_move)
+                move_unit(name_moving_unit, range_move, column_move)                           
 
 for instruction in list_instruction_player_1:
 
