@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from creation_units import creation_units
 from upgrade_unit import upgrade_unit, condition_upgrade, calcul_energy
 
@@ -81,7 +80,7 @@ def decode_instructions(list_instruction_player_1, list_instruction_player_2, pl
         # upgrade_unit
         if 'upgrade' in instruction:
             type_of_improvement = instruction.split('upgrade:')
-            upgrade_unit(type_of_improvement[1],info_player_1)
+            upgrade_unit(type_of_improvement[1],info_player_1,player1)
 
         # fight unit
         if '*' in instruction:
@@ -156,7 +155,7 @@ def decode_instructions(list_instruction_player_1, list_instruction_player_2, pl
         # upgrade_unit
         if 'upgrade' in instruction:
             type_of_improvement = instruction.split('upgrade:')
-            upgrade_unit(type_of_improvement[1],info_player_2)
+            upgrade_unit(type_of_improvement[1],info_player_2, player2)
 
         # fight unit
         if '*' in instruction:
