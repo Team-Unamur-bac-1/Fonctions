@@ -1,7 +1,8 @@
-# -*- coding: utf-8 -*-
 import colored, random
 
-from get_instructions import get_instructions, decode_instructions, creation_units
+from get_instructions import get_instructions, decode_instructions
+
+from upgrade_unit import upgrade_unit, condition_upgrade, creation_units, calcul_energy
 
 
 def read_file(path):
@@ -65,8 +66,8 @@ def read_file(path):
         hubs = {(int(lineHubs1[0]), int(lineHubs1[1])): 'hubs1', (int(lineHubs2[0]), int(lineHubs2[1])): 'hubs2'}
         hubs1 = {'capacity': int(lineHubs1[2]), 'rate': int(lineHubs1[3]), 'energy': int(lineHubs1[2])}
         hubs2 = {'capacity': int(lineHubs2[2]), 'rate': int(lineHubs2[3]), 'energy': int(lineHubs2[2])}
-        info_player_1['hubs1'] = hubs1
-        info_player_2['hubs2'] = hubs2
+        info_player_1['hubs'] = hubs1
+        info_player_2['hubs'] = hubs2
         # hubs1 = {"coordonnee": (lineHubs1[0], lineHubs1[1]), "energy": line[2], "rate": line[3]}
         # hubs2 = {"coordonnee": (line[0], line[1]), "energy": line[2], "rate": line[3]}
 
